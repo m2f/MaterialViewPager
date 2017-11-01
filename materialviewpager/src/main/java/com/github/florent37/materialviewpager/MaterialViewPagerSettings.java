@@ -46,6 +46,7 @@ public class MaterialViewPagerSettings implements Parcelable {
     boolean toolbarTransparent;
     boolean animatedHeaderImage;
     boolean disableToolbar;
+    int toolbarTitleResId;
 
     //region parcelable
 
@@ -68,6 +69,7 @@ public class MaterialViewPagerSettings implements Parcelable {
         this.hideToolbarAndTitle = in.readByte() != 0;
         this.hideLogoWithFade = in.readByte() != 0;
         this.enableToolbarElevation = in.readByte() != 0;
+        this.toolbarTitleResId = in.readInt();
     }
 
     @Override
@@ -92,6 +94,7 @@ public class MaterialViewPagerSettings implements Parcelable {
         dest.writeByte(hideToolbarAndTitle ? (byte) 1 : (byte) 0);
         dest.writeByte(hideLogoWithFade ? (byte) 1 : (byte) 0);
         dest.writeByte(enableToolbarElevation ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.toolbarTitleResId);
     }
 
     /**
@@ -157,6 +160,9 @@ public class MaterialViewPagerSettings implements Parcelable {
             }
             {
                 disableToolbar = styledAttrs.getBoolean(R.styleable.MaterialViewPager_viewpager_disableToolbar, false);
+            }
+            {
+                toolbarTitleResId = styledAttrs.getResourceId(R.styleable.MaterialViewPager_viewpager_toolbarTitleResId, -1);
             }
             styledAttrs.recycle();
         } catch (Exception e) {

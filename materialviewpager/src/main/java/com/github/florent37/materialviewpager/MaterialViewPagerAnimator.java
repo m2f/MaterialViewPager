@@ -190,6 +190,13 @@ public class MaterialViewPagerAnimator {
                 if (this.settings.hideLogoWithFade) {
                     ViewCompat.setAlpha(mHeader.mLogo, 1 - percent);
                     ViewCompat.setTranslationY(mHeader.mLogo, (mHeader.finalTitleY - mHeader.originalTitleY) * percent);
+                    if(this.settings.toolbarTitleResId != -1) {
+                        if(percent > 0.8) {
+                            mHeader.toolbar.setTitle(this.settings.toolbarTitleResId);
+                        } else {
+                            mHeader.toolbar.setTitle("");
+                        }
+                    }
                 } else {
                     ViewCompat.setTranslationY(mHeader.mLogo, (mHeader.finalTitleY - mHeader.originalTitleY) * percent);
                     ViewCompat.setTranslationX(mHeader.mLogo, (mHeader.finalTitleX - mHeader.originalTitleX) * percent);
